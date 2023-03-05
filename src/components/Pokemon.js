@@ -1,12 +1,13 @@
 import React from 'react'
-import { useContext,useState} from 'react'
+import { useContext} from 'react'
+import { NavLink } from 'react-router-dom'
 
 //context
 import { pokedexContext } from '../App'
 
 export const Pokemon = () => {
     let pokedex = useContext(pokedexContext)
-    let [affichage,setAffichage] = useState()
+    let affichage = ""
 
     pokedex.map((element)=>{
         if(element.name === document.location.pathname.substring(1)){
@@ -21,6 +22,8 @@ export const Pokemon = () => {
 
             affichage = 
                 <div id="pokemon">
+                    <NavLink to="/">go back</NavLink>
+
                     <div style={background}></div>
                     <div>
                         <div id="subnav">

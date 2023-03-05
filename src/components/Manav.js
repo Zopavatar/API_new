@@ -1,6 +1,5 @@
 import React from 'react'
 import { useContext, useState } from 'react'
-import { NavLink, Outlet } from 'react-router-dom'
 
 //context
 import { navContext } from '../App'
