@@ -9,13 +9,14 @@
     flex-direction: column
     justify-content: center
     height: 100vh
-    background: linear-gradient(120deg,#e1e1e1 50%, #d91b1b 50%)
+    background: linear-gradient(120deg,#e1e1e1 50%, #f85142 50%)
 
     nav
         background: linear-gradient(120deg,#b0b0b0 59%, #0e0e0e 0%)
         display: flex
         padding: 20px 45px
         justify-content: space-between
+        align-items: center
 
         &>div:first-of-type
             font-size: 45px
@@ -24,7 +25,7 @@
             display: flex
             color: white
             font-size: 45px
-            width: 30vw
+            width: 35vw
             align-items: center
             justify-content: center
 
@@ -38,21 +39,55 @@
 
     #pokedex
         display: flex
-        padding: 25px
+        padding: 15px
         align-items: center
+        justify-content: space-between
 
-        div:first-of-type
-            width: 60%
 
-        div:last-of-type
-            height: 70vh
-            width: 40%
+        &>div:last-of-type
+            height: 80vh
+            width: 35vw
             overflow: hidden scroll
             display: flex
             flex-direction: column
 
             a
-                border: solid
+                margin: 15px 0
+                display: flex
+                justify-content: space-between
+                align-items: center
+                font-size: 35px
+                text-decoration: none
+                color: black
+                padding: 5px 20px
+
+                &>div
+                    display: flex
+                    align-items: center
+
+                &>div>div
+                    width: 50px
+                    height: 50px
+                    background-position: center
+                    background-repeat: no-repeat
+                    margin-right: 10px
+
+
+                p:first-of-type
+                    text-align: center
+
+                    span
+                        font-weight: 600
+
+                p:last-of-type
+                    text-align: right
+
+            a:hover
+               background: linear-gradient(120deg,#e03822 59%, #0e0e0e 0%)
+               border-radius: 50px
+               color: white
+               box-shadow: 0px 8px 0px #480000
+
 
         div:last-of-type::-webkit-scrollbar
             opacity: 0

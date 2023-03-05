@@ -46,7 +46,6 @@ function App() {
 
     axios.get(`https://pokeapi.co/api/v2/pokemon?limit=898`)
     .then(res =>{
-
       res.data.results.map((element)=>{
         id = res.data.results.indexOf(element)+1
         setId(id)
