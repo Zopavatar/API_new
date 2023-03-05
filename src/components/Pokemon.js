@@ -43,12 +43,17 @@ export const Pokemon = () => {
                             </div>
                         </div>
 
-                        <div id="type">
-                            {element.types[0].type.name}
-                        </div>
+                        <div id="types">{
+                            element.types.map((element)=>(
+                                <div className="type" id={element.type.name}>
+                                    {element.type.name}
+                                </div>
+                            ))
+                        }</div>
+                        
 
 
-                        <div>
+                        <div id="visu">
                             <div>
                                 <p>front sprite</p>
                                 <div className="faces" id="front"><style>{`#front{background-image:url(https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${element.id}.png)}`}</style></div>
