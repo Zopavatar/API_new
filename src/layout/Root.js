@@ -1,12 +1,14 @@
 import React from 'react'
 import { useContext, useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Outlet } from 'react-router-dom'
 
 //context
 import { navContext } from '../App'
+import { locationContext } from '../App'
 
 export const Root = () => {
   let nav = useContext(navContext)
+  let location = useContext(locationContext)
   
   let [count,setCount] = useState(0)
   let [active,setActive] = useState("all")
@@ -22,6 +24,8 @@ export const Root = () => {
 
     active = nav[count]
     setActive(active)
+    
+    location(active)
   }
 
   let Previous = () => {
@@ -35,6 +39,8 @@ export const Root = () => {
     
     active = nav[count]
     setActive(active)
+
+    location(active)
   }
 
   return (
@@ -44,6 +50,8 @@ export const Root = () => {
             <div>{active}</div>
             <button onClick={Next}>Next</button>
         </nav>
+
+        <Outlet/>
     </div>
   )
 }

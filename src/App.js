@@ -11,6 +11,7 @@ import { Root } from './layout/Root';
 
 //Context
 export let navContext = createContext()
+export let locationContext = createContext()
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,9 +23,12 @@ const router = createBrowserRouter(
 function App() {
   let [nav,setNav] = useState([])
   let [id,setId] = useState()
-  let pokedex = []
+  let [location, setLocation] = useState("johto")
+
+  let [pokedex,setPokedex] = useState([])
   
   useEffect(()=>{
+    
     axios.get(`https://pokeapi.co/api/v2/region`).then(res=>{
       nav = ["all"]
       setNav(nav)
@@ -38,30 +42,43 @@ function App() {
     axios.get(`https://pokeapi.co/api/v2/pokemon?limit=898`)
     .then(res =>{
 
+      pokedex = []
+      setPokedex([])
+
       res.data.results.map((element)=>{
         id = res.data.results.indexOf(element)+1
         setId(id)
-      })
 
-      axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`).then(test => {
-    
-      })
+        let pokemon = ""
+        axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`).then(test => {
+          pokemon = test.data
+        })
 
-      axios.get(`https://pokeapi.co/api/v2/pokemon/${id}/encounters`).then(res => {
-    
+        axios.get(`https://pokeapi.co/api/v2/pokemon/${id}/encounters`).then(res => {
+          if(res.data.length > 0){
+            res.data.map((element)=>{
+              let lieu = element.location_area
+
+                if((lieu.name.indexOf(location) !== -1) && (pokedex.indexOf(pokemon) === -1)){
+                    pokedex.push(pokemon)
+                    setPokedex(pokedex)
+                }
+            })
+          }
+        })
       })
     }).catch(err => {
       console.log(err)
     })
-  },[])
-
-  console.log(nav)
+  },[location])
   
   return (
     <div className="App">
+      <locationContext.Provider value={setLocation}>
       <navContext.Provider value={nav}>
         <RouterProvider router={router}/>
       </navContext.Provider>
+      </locationContext.Provider>
     </div>
   );
 }
