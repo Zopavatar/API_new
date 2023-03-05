@@ -46,9 +46,13 @@ export const Root = () => {
   return (
     <div>
         <nav>
-            <button onClick={Previous}>Previous</button>
+          <div>Pokédex</div>
+
+          <div>
+            <button onClick={Previous}>&#60;-</button>
             <div>{active}</div>
-            <button onClick={Next}>Next</button>
+            <button onClick={Next}>-&#62;</button>
+          </div>
         </nav>
 
         <Outlet/>

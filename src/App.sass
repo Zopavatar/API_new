@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap')
+
+*
+  margin: 0
+  font-family: 'VT323', monospace
+
+.App
+    display: flex
+    flex-direction: column
+    justify-content: center
+    height: 100vh
+    background: linear-gradient(120deg,#e1e1e1 50%, #d91b1b 50%)
+
+    nav
+        background: linear-gradient(120deg,#b0b0b0 59%, #0e0e0e 0%)
+        display: flex
+        padding: 20px 45px
+        justify-content: space-between
+
+        &>div:first-of-type
+            font-size: 45px
+
+        &>div:last-of-type
+            display: flex
+            color: white
+            font-size: 45px
+            width: 30vw
+            align-items: center
+            justify-content: center
+
+            div
+                margin: 0 15px
+
+            button
+                font-size: 45px
+                background: none
+                color: white    
+
+    #pokedex
+        display: flex
+        padding: 25px
+        align-items: center
+
+        div:first-of-type
+            width: 60%
+
+        div:last-of-type
+            height: 70vh
+            width: 40%
+            overflow: hidden scroll
+            display: flex
+            flex-direction: column
+
+            a
+                border: solid
+
+        div:last-of-type::-webkit-scrollbar
+            opacity: 0
+ 
+        div:last-of-type::-webkit-scrollbar-track
+            opacity: 0
+  
+        div:last-of-type::-webkit-scrollbar-thumb
+            opacity: 0
+ 
