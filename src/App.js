@@ -8,6 +8,7 @@ import { Root } from './layout/Root';
 
 //pages
 import { Pokedex } from './components/Pokedex';
+import { Pokemon } from './components/Pokemon';
 
 //Context
 export let navContext = createContext()
@@ -18,6 +19,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Root/>}>
       <Route index element={<Pokedex/>}/>
+      <Route path={`:id`} element={<Pokemon/>}/>
     </Route>
   )
 )
@@ -28,7 +30,6 @@ function App() {
   let [location, setLocation] = useState("all")
 
   let [pokedex,setPokedex] = useState([])
-  console.log(pokedex)
   
   useEffect(()=>{
 
