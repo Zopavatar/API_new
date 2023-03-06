@@ -30,6 +30,10 @@ function App() {
   let [location, setLocation] = useState("all")
 
   let [pokedex,setPokedex] = useState([])
+  pokedex.sort((a, b) => a.id - b.id);
+
+  console.log(pokedex)
+
   
   useEffect(()=>{
 
@@ -61,12 +65,13 @@ function App() {
           if((location === "all") && (pokedex.indexOf(pokemon) === -1)){
             pokedex.push(pokemon)
             setPokedex(pokedex)
+  
           }
 
           if(res.data.length > 0){
             res.data.map((element)=>{
               let lieu = element.location_area
-                if((lieu.name.indexOf(location) !== -1) && (pokedex.indexOf(pokemon) === -1)){
+                if((lieu.name.includes(location)) && (!pokedex.includes(pokemon))){
                   pokedex.push(pokemon)
                   setPokedex(pokedex)
                 }

@@ -11,8 +11,6 @@ export const Pokemon = () => {
 
     pokedex.map((element)=>{
         if(element.name === document.location.pathname.substring(1)){
-            console.log(element)
-            
             let background = {
                 backgroundImage:`url(https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${element.id}.png)`,
                 height: "60vh",
@@ -23,7 +21,7 @@ export const Pokemon = () => {
             }
 
             affichage = 
-                <div id="pokemon">
+                <div key={element.id} id="pokemon">
                     <NavLink to="/">go back</NavLink>
 
                     <div style={background}></div>
