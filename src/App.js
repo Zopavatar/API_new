@@ -35,6 +35,8 @@ function App() {
 
   let [pokedex,setPokedex] = useState([])
   pokedex.sort((a, b) => a.id - b.id);
+
+  console.log(pokedex)
   
   useEffect(()=>{
     lieux = []
@@ -81,7 +83,6 @@ function App() {
           if((location === "all") && (pokedex.indexOf(pokemon) === -1)){
             pokedex.push(pokemon)
             setPokedex(pokedex)
-
           }
 
           if(res.data.length > 0){
@@ -102,6 +103,7 @@ function App() {
           }
         })
       })
+
     }).catch(err => {
       console.log(err)
     })
