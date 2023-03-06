@@ -57,19 +57,21 @@ function App() {
         })
 
         axios.get(`https://pokeapi.co/api/v2/pokemon/${id}/encounters`).then(res => {
+          console.log(res.data)
+          if((location === "all") && (pokedex.indexOf(pokemon) === -1)){
+            console.log(pokemon.name)
+            pokedex.push(pokemon)
+            setPokedex(pokedex)
+          }
+
           if(res.data.length > 0){
             res.data.map((element)=>{
               let lieu = element.location_area
-
-                if((location === "all") && (pokedex.indexOf(pokemon) === -1)){
+                if((lieu.name.indexOf(location) !== -1) && (pokedex.indexOf(pokemon) === -1)){
                   pokedex.push(pokemon)
                   setPokedex(pokedex)
-                }else{
-                  if((lieu.name.indexOf(location) !== -1) && (pokedex.indexOf(pokemon) === -1)){
-                    pokedex.push(pokemon)
-                    setPokedex(pokedex)
-                  }
                 }
+                
             })
           }
         })
