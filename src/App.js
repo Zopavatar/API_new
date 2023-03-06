@@ -32,7 +32,6 @@ function App() {
 
   let [location, setLocation] = useState("all")
   let [lieux, setLieux] = useState([])
-  console.log(lieux)
 
   let [pokedex,setPokedex] = useState([])
   pokedex.sort((a, b) => a.id - b.id);
