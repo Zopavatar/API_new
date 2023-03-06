@@ -39,6 +39,7 @@ function App() {
       nav = ["all"]
       setNav(nav)
 
+      console.log(res.data.results)
       res.data.results.map((element)=>{
         nav.push(element.name)
         setNav(nav)
@@ -57,9 +58,7 @@ function App() {
         })
 
         axios.get(`https://pokeapi.co/api/v2/pokemon/${id}/encounters`).then(res => {
-          console.log(res.data)
           if((location === "all") && (pokedex.indexOf(pokemon) === -1)){
-            console.log(pokemon.name)
             pokedex.push(pokemon)
             setPokedex(pokedex)
           }
