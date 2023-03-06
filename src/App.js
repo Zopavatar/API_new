@@ -26,17 +26,19 @@ const router = createBrowserRouter(
 
 function App() {
   let [nav,setNav] = useState([])
+
   let [id,setId] = useState()
+  let [idb,setIdb] = useState()
+
   let [location, setLocation] = useState("all")
+  let [lieux, setLieux] = useState([])
+  console.log(lieux)
 
   let [pokedex,setPokedex] = useState([])
   pokedex.sort((a, b) => a.id - b.id);
-
-  console.log(pokedex)
-
   
   useEffect(()=>{
-
+    lieux = []
     pokedex = []
     
     axios.get(`https://pokeapi.co/api/v2/region`).then(res=>{
@@ -47,7 +49,21 @@ function App() {
       res.data.results.map((element)=>{
         nav.push(element.name)
         setNav(nav)
+
+        idb = res.data.results.indexOf(element)+1
+        setIdb(idb)
+
+        axios.get(`https://pokeapi.co/api/v2/region/${idb}`).then(res => {
+          
+          if(location === res.data.name){
+            lieux.push(res.data.locations)
+            setLieux(lieux)
+          }
+        })
+
       })
+
+
     })
 
     axios.get(`https://pokeapi.co/api/v2/pokemon?limit=898`)
@@ -61,20 +77,27 @@ function App() {
           pokemon = test.data
         })
 
-        axios.get(`https://pokeapi.co/api/v2/pokemon/${id}/encounters`).then(res => {
+        axios.get(`https://pokeapi.co/api/v2/pokemon/${id}/encounters`).then(res => {  
+
           if((location === "all") && (pokedex.indexOf(pokemon) === -1)){
             pokedex.push(pokemon)
             setPokedex(pokedex)
-  
+
           }
 
           if(res.data.length > 0){
             res.data.map((element)=>{
               let lieu = element.location_area
-                if((lieu.name.includes(location)) && (!pokedex.includes(pokemon))){
-                  pokedex.push(pokemon)
-                  setPokedex(pokedex)
-                }
+
+              lieux.map((element)=>{
+                element.map((element)=>{
+                  if((lieu.name.indexOf(element.name) !== -1 ) && (pokedex.indexOf(pokemon) === -1)){
+                    pokedex.push(pokemon)
+                    setPokedex(pokedex)
+                  }
+
+                })
+              })
                 
             })
           }
