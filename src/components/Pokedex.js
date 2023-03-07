@@ -37,7 +37,7 @@ export const Pokedex = () => {
   })
 
   let liens = pokedex.map((element)=>(
-    <NavLink key={element.id*1} to={element.name} onMouseOver={Image} id={element.id}><div><div id={element.name}><style>{`#${element.name}{background-image:url(https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${element.id}.png)}`}</style></div><p >No.<span>{element.id}</span></p></div><p>{element.name}</p></NavLink>
+    <NavLink key={element.id*1} to={element.name} onMouseOver={Image} id={element.id}><div><div id={element.name}><style>{`#${element.name}{background-image:url(https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${element.id}.png)}`}</style></div><p >No.<span>{element.id}</span></p></div><div><p>{element.name}</p><div className={element.name} id="pokeball"><style>{`.${element.name}{background-image:url(https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png)}`}</style></div></div></NavLink>
   ))
 
   return (
