@@ -23,7 +23,7 @@ export const Pokedex = () => {
 
   let Image = (e) =>{ 
     pokedex.map((element)=>{
-        if(e.currentTarget.id == element.id){
+        if(e.currentTarget.id === element.id){
             image = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${element.id}.png`
             setImage(image)
         }
