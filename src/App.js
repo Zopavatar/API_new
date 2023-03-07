@@ -36,7 +36,6 @@ function App() {
   let [pokedex,setPokedex] = useState([])
   pokedex.sort((a, b) => a.id - b.id);
 
-  console.log(pokedex)
   
   useEffect(()=>{
     lieux = []
@@ -45,8 +44,7 @@ function App() {
     axios.get(`https://pokeapi.co/api/v2/region`).then(res=>{
       nav = ["all"]
       setNav(nav)
-
-      console.log(res.data.results)
+      
       res.data.results.map((element)=>{
         nav.push(element.name)
         setNav(nav)
